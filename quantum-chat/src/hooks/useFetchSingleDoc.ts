@@ -3,7 +3,7 @@ import {
     getFirestore, doc, getDoc
   } from 'firebase/firestore'
 
-import db from '../firebase-config'
+import db from '../config/firebase-config'
 
 type Props = {
     firebaseCollection: string,
