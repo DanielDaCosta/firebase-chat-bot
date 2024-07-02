@@ -1,19 +1,26 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { getFirestore, collection, addDoc } from "firebase/firestore"; 
+import React from 'react';
+
+type IUser = {
+    title: string,
+    body: string,
+    author: string
+}
 
 const Create = () => {
-    const [title, setTitle] = useState('');
-    const [body, setBody] = useState('');
-    const [author, setAuthor] = useState('mario');
-    const [isPending, setIsPending] = useState(false);
+    const [title, setTitle] = useState<string>('');
+    const [body, setBody] = useState<string>('');
+    const [author, setAuthor] = useState<string>('mario');
+    const [isPending, setIsPending] = useState<boolean>(false);
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) : void=> {
         e.preventDefault();
-        const blog = {title, body, author};
+        const blog:IUser = {title, body, author};
 
-        setIsPending(true);
+        setIsPending(true); 
         
         const db = getFirestore();
         const colRef = collection(db, 'books');
@@ -44,7 +51,7 @@ const Create = () => {
                  required
                  value={body}
                  onChange={(e) => setBody(e.target.value)}
-                ></textarea>
+                ></textarea> 
                 <label>Blog author:</label>
                 <select
                     value={author}

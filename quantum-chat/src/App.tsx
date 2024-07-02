@@ -3,6 +3,7 @@ import Home from './Home';
 import BlogDetails from './BlogDetails';
 import Create from './Create';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import React from 'react';
 
 function App() {
 
@@ -14,9 +15,9 @@ function App() {
         <Navbar />
         <div className="content">
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/blogs/:id" element={<BlogDetails />} />
-            <Route exact path="/create" element={<Create />} />
+            <Route path="/create" element={<Create />} />
           </Routes>
         </div>
       </div>
