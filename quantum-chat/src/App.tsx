@@ -1,7 +1,7 @@
-import Navbar from './Navbar';
-import Home from './Home';
-import BlogDetails from './BlogDetails';
-import Create from './Create';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import BlogDetails from './components/BlogDetails';
+import Create from './components/Create';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import React from 'react';
 
