@@ -5,7 +5,14 @@ import {
 
 import { initializeApp } from 'firebase/app'
 
-const useFetch = (firebaseCollection) => {
+type Blog = {
+    author: string,
+    title: string,
+    id: string,
+    body: string
+}
+
+const useFetch = (firebaseCollection: string) => {
 
     const firebaseConfig = {
         apiKey: "AIzaSyBFbedwfiJZNtmM1Hah-psboTXdD3jULDY",
@@ -16,8 +23,8 @@ const useFetch = (firebaseCollection) => {
         appId: "1:73234206130:web:b439d7d7a65e2fc9f5a8ab"
     };
 
-    const [data, setData] = useState(null);
-    const [isPending, setIsPending] = useState(true);
+    const [data, setData] = useState<Blog[]|null>(null);
+    const [isPending, setIsPending] = useState<boolean>(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -32,9 +39,10 @@ const useFetch = (firebaseCollection) => {
                 if (!snapshot){
                     throw Error('Could not fetch the data');
                 }
-                let data = []
+                let data:Blog[] = []
                 snapshot.docs.forEach( (doc) => {
-                    data.push({...doc.data(), id: doc.id})
+                    const docData = doc.data() as Blog
+                    data.push({...docData, id: doc.id})
                 })
                 setData(data);
                 setIsPending(false);

@@ -5,7 +5,24 @@ import {
 
 import { initializeApp } from 'firebase/app'
 
-const useFetchSingleDoc = (firebaseCollection, id) => {
+type Props = {
+    firebaseCollection: string,
+    id: string
+}
+
+type Blog = {
+    author: string,
+    title: string,
+    body: string
+}
+
+type FetchResult = {
+    data: Blog | null;
+    isPending: boolean;
+    error: any;
+};
+
+const useFetchSingleDoc = ({ firebaseCollection, id }: Props): FetchResult => {
 
     const firebaseConfig = {
         apiKey: "AIzaSyBFbedwfiJZNtmM1Hah-psboTXdD3jULDY",
@@ -16,9 +33,9 @@ const useFetchSingleDoc = (firebaseCollection, id) => {
         appId: "1:73234206130:web:b439d7d7a65e2fc9f5a8ab"
     };
 
-    const [data, setData] = useState(null);
-    const [isPending, setIsPending] = useState(true);
-    const [error, setError] = useState(null);
+    const [data, setData] = useState<Blog|null>(null);
+    const [isPending, setIsPending] = useState<boolean>(true);
+    const [error, setError] = useState<any>(null);
 
     useEffect(() => {
 
@@ -33,17 +50,17 @@ const useFetchSingleDoc = (firebaseCollection, id) => {
 
                 throw Error('Could not fetch the data');
             }
-            setData(docSnap.data());
+            setData(docSnap.data() as Blog);
             setIsPending(false);
             setError(null);
         }
 
         try {
             fetchData()
-        } catch (err) {
+        } catch (err:any) {
+            console.log(id)
             setIsPending(false);
-            setError(err.message);
-            
+            setError(err.message);   
         }
         
     }, [firebaseCollection, id]);

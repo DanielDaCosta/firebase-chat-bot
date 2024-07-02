@@ -1,5 +1,17 @@
 import {Link} from 'react-router-dom'
-const BlogList = ({blogs, title}) => {
+import React from 'react';
+
+type Props = {
+    blogs: {
+        author: string,
+        title: string,
+        body: string, 
+        id: string,
+    }[],
+    title: string
+}
+
+const BlogList = ({blogs, title}: Props) => {
 
     return (  
         <div className="blog-list">
