@@ -3,7 +3,7 @@ import {
     getFirestore, doc, getDoc
   } from 'firebase/firestore'
 
-import { initializeApp } from 'firebase/app'
+import db from '../firebase-config'
 
 type Props = {
     firebaseCollection: string,
@@ -24,24 +24,11 @@ type FetchResult = {
 
 const useFetchSingleDoc = ({ firebaseCollection, id }: Props): FetchResult => {
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyBFbedwfiJZNtmM1Hah-psboTXdD3jULDY",
-        authDomain: "quantum-chat-bot.firebaseapp.com",
-        projectId: "quantum-chat-bot",
-        storageBucket: "quantum-chat-bot.appspot.com",
-        messagingSenderId: "73234206130",
-        appId: "1:73234206130:web:b439d7d7a65e2fc9f5a8ab"
-    };
-
     const [data, setData] = useState<Blog|null>(null);
     const [isPending, setIsPending] = useState<boolean>(true);
     const [error, setError] = useState<any>(null);
 
     useEffect(() => {
-
-        // Connect to Firestore
-        initializeApp(firebaseConfig)
-        const db = getFirestore();
 
         const fetchData = async () => {
             const docRef = doc(db, firebaseCollection, id);
