@@ -1,2 +1,3 @@
 # firebase-chat-bot
-Platform for instantaneous and continuous dialogue, using React, Node.js and Firebase.
+
+A platform for instantaneous and continuous dialogue, using React, Node.js and Firebase.
