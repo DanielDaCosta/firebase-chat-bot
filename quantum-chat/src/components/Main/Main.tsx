@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import './Main.css'
 import { assets } from '../../assets/assets'
+import ChatContextProvider from "../../context/ChatContext";
 
 const Main = () => {
+    const {
+        onSent, recentPrompt, showResult,
+        loading, resultData, setInput, input
+    } = useContext(ChatContextProvider)
     return (
         <div className="main">
             <div className="nav">
