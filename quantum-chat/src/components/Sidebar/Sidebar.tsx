@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './Sidebar.css'
 import { assets } from '../../assets/assets'
+import { ChatContext } from "../../context/ChatContext";
+import { ChatContextType } from '../../types/context';
 
 const Sidebar = () => {
 
     const [extended, setExtended] = useState(false)
+
+    const {
+        prevPrompts
+    } = useContext(ChatContext) as ChatContextType
+
+    // useEffect(() => {
+
+
+    // }, [prevPrompts])
+
+
 
     return (  
         <div className="sidebar">

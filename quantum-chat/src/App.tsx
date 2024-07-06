@@ -1,5 +1,4 @@
 import Sidebar from './components/Sidebar/Sidebar';
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import React from 'react';
 import Main from './components/Main/Main';
 import ChatContextProvider from './context/ChatContext';
