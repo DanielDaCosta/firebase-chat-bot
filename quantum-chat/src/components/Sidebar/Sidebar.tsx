@@ -10,7 +10,7 @@ const Sidebar = () => {
 
     const {
         prevPrompts, setRecentPrompt,
-        setResultData, prevAnswers
+        setResultData, prevAnswers, newChat
     } = useContext(ChatContext) as ChatContextType
 
 
@@ -18,7 +18,6 @@ const Sidebar = () => {
         const originalIndex = prevPrompts.length - 1 - index;
         setRecentPrompt(prevPrompts[originalIndex]);
         setResultData(prevAnswers[originalIndex]);
-
     }
 
     return (  
@@ -26,7 +25,7 @@ const Sidebar = () => {
             <div className="top">
 
                 <img className="menu" src={assets.menu_icon} alt="" onClick={() => setExtended(!extended)}/>
-                <div className="new-chat">
+                <div onClick={ () => newChat() } className="new-chat">
                     <img src={assets.plus_icon} alt=""/>
                     {extended ? <p>New Chat</p> : null}
                 </div>

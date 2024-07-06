@@ -180,28 +180,21 @@
     line-height: 1.8;
 }
 
-/* .main .question {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 10px 20px;
+@media (max-width: 600px) {
+    .main-bottom input {
+        flex: none;
+        width: 150px;
+    }
+    .main-bottom img {
+        width: 20px;
+    }
+    .search-box {
+        padding: 5px 10px;
+    }
+    .search-box div {
+        gap: 5px
+    }
+    .search-box input {
+        font-size: 14px;
+    }
 }
-
-.main .question img {
-    width: 40px;
-    border-radius: 50%;
-    
-}
-
-.main .answer {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 10px 20px;
-}
-
-.main .answer img {
-    width: 40px;
-    border-radius: 50%;
-    
-} */

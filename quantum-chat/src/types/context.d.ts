@@ -15,6 +15,7 @@ type SetLoading = Dispatch<SetStateAction<Loading>>;
 type SetResultData = Dispatch<SetStateAction<ResultData>>;
 
 type OnSent = (prompt: Prompt) => Promise<void>;
+type NewChat = () => void;
 
 interface ChatContextType {
     prevPrompts: Prompt[];
@@ -30,4 +31,5 @@ interface ChatContextType {
     setResultData: SetResultData;
     prevAnswers: Prompt[];
     setPrevAnswers: SetPrevAnswers;
+    newChat: NewChat; 
   }

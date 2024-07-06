@@ -24,6 +24,11 @@ const ChatContextProvider: React.FC<{children: React.ReactNode}> = ({ children }
         }, 75*index)
     }
 
+    const newChat = () => {
+        setLoading(false);
+        setShowResult(false);
+    }
+
     const onSent: ChatContextType["onSent"] = async (prompt: string) => {
         setResultData("");
         setLoading(true);
@@ -66,7 +71,8 @@ const ChatContextProvider: React.FC<{children: React.ReactNode}> = ({ children }
         setInput,
         setResultData,
         prevAnswers,
-        setPrevAnswers
+        setPrevAnswers,
+        newChat
     }
 
     return (
