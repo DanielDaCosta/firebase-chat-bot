@@ -12,23 +12,15 @@
 .App {
   min-height: 100vh;
   display: flex;
+  animation: fadeIn 1.5s;
 }
 
-/* .container {
-  display: flex;
-} */
-
-/* .left-component, .right-component {
-  flex: 1;
-  padding: 20px;
-  border: 1px solid #ccc;
-} */
-
-
-/* base styles
-/* base styles */
-/* * {
-  margin: 0;
-  font-family: "Quicksand";
-  color: #333;
-} */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+  
+}

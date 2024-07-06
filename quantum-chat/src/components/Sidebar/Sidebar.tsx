@@ -9,36 +9,23 @@ const Sidebar = () => {
     const [extended, setExtended] = useState(false)
 
     const {
-        prevPrompts
+        prevPrompts, setRecentPrompt,
+        setResultData, prevAnswers, newChat
     } = useContext(ChatContext) as ChatContextType
 
-    // useEffect(() => {
 
-    //     const container = document.getElementById('recent-entries')
-    //     if (container) {
-    //         container.innerHTML = ''; // Clear previous content
-
-    //         prevPrompts.reverse().forEach((prompt: string, index) => {
-    //             const  div = document.createElement('div');
-    //             div.className = "recent-entry";
-    //             div.innerHTML = `
-    //                  <img src=${assets.message_icon} alt="" />
-    //                 <p>${prompt.substring(0,10)}</p>
-    //             `;
-    //             container.appendChild(div);
-    //         })
-    //     }
-
-    // }, [prevPrompts])
-
-
+    const loadPrompt = (index: number) => {
+        const originalIndex = prevPrompts.length - 1 - index;
+        setRecentPrompt(prevPrompts[originalIndex]);
+        setResultData(prevAnswers[originalIndex]);
+    }
 
     return (  
         <div className="sidebar">
             <div className="top">
 
                 <img className="menu" src={assets.menu_icon} alt="" onClick={() => setExtended(!extended)}/>
-                <div className="new-chat">
+                <div onClick={ () => newChat() } className="new-chat">
                     <img src={assets.plus_icon} alt=""/>
                     {extended ? <p>New Chat</p> : null}
                 </div>
@@ -46,16 +33,16 @@ const Sidebar = () => {
                 <div className="recent">
                     <p className="recent-title">Recent</p>
                     {
-                        prevPrompts.map((item, index) => {
+                        prevPrompts.slice().reverse().map((item, index) => {
                             return(
-                                <div className="recent-entry">
+                                <div key={index} onClick={() => loadPrompt(index)}className="recent-entry">
                                     <img src={assets.message_icon} alt="" />
                                     <p>{item.slice(0,18)}...</p>
                                 </div>
                             )
                         })
                     }
-                </div>
+                </div> 
                 : null}
             </div>
             <div className="bottom">
