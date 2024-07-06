@@ -3,6 +3,7 @@ import './Main.css'
 import { assets } from '../../assets/assets'
 import { ChatContext } from "../../context/ChatContext";
 import { ChatContextType } from '../../types/context';
+import SaveToFirebase from "../../utils/SaveToFirebase";
 
 const Main = () => {
     const {
@@ -10,6 +11,21 @@ const Main = () => {
         recentPrompt, showResult, loading,
         resultData
     } = useContext(ChatContext) as ChatContextType;
+
+    const processResult = (input: string) : void => {
+
+        // Process and Save GenAI output to Firebase 
+        onSent(input).then((output) => {
+            console.log(input)
+            console.log(output)
+            SaveToFirebase({
+                firebaseCollection: 'quantum-chat',
+                prompt: input,
+                answer: output
+            })
+        })
+    }
+
     return (
         <div className="main">
             <div className="nav">
@@ -70,7 +86,7 @@ const Main = () => {
                         <div>
                             <img src={assets.gallery_icon} alt="" />
                             <img src={assets.mic_icon} alt="" />
-                            {input ? <img onClick={() => onSent(input)} src={assets.send_icon} alt="" /> : null}
+                            {input ? <img onClick={() => processResult(input)} src={assets.send_icon} alt="" /> : null}
                         </div>
                     </div>
                     <p className="bottom-info">

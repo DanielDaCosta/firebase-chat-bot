@@ -2,6 +2,7 @@ import { createContext, useState } from 'react';
 import React from 'react';
 import runChat from '../config/gemini';
 import { ChatContextType, Prompt, RecentPrompt, ResultData, ShowResult, Loading } from "../types/context";
+import useSave from '../utils/SaveToFirebase';
 
 export const ChatContext = createContext<ChatContextType|null>(null);
 
@@ -56,6 +57,7 @@ const ChatContextProvider: React.FC<{children: React.ReactNode}> = ({ children }
         setInput("");
         setPrevAnswers([...prevAnswers, newResponse2])
         setPrevPrompts([...prevPrompts, prompt]);
+        return newResponse2
     }
 
     const contextValue = {

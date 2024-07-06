@@ -14,8 +14,13 @@ type SetShowResult = Dispatch<SetStateAction<ShowResult>>;
 type SetLoading = Dispatch<SetStateAction<Loading>>;
 type SetResultData = Dispatch<SetStateAction<ResultData>>;
 
-type OnSent = (prompt: Prompt) => Promise<void>;
+type OnSent = (prompt: Prompt) => Promise<string>;
 type NewChat = () => void;
+
+type DataFirestore = {
+  prompt: string,
+  answer: string
+}
 
 interface ChatContextType {
     prevPrompts: Prompt[];
