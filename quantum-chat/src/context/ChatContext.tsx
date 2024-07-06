@@ -12,9 +12,11 @@ const ChatContextProvider: React.FC<{children: React.ReactNode}> = ({ children }
     const [input, setInput] = useState<Prompt>("");
     const [recentPrompt, setRecentPrompt] = useState<RecentPrompt>("");
     const [prevPrompts, setPrevPrompts] = useState<Prompt[]>([]);
+    const [prevAnswers, setPrevAnswers] = useState<Prompt[]>([]);
     const [showResult, setShowResult] = useState<ShowResult>(false);
     const [loading, setLoading] = useState<Loading>(false);
     const [resultData, setResultData] = useState<ResultData>("");
+    
 
     const delayPara = (index: number, nextWord: string) => {
         setTimeout(() => {
@@ -27,7 +29,7 @@ const ChatContextProvider: React.FC<{children: React.ReactNode}> = ({ children }
         setLoading(true);
         setShowResult(true);
         setRecentPrompt(prompt);
-        setPrevPrompts(prev=> [...prev, input])
+        setPrevPrompts(prev=> [...prev, input])       
         const response = await runChat(prompt); 
         let responseArray: Array<string> = response.split("**");
         let newResponse : string = "";
@@ -47,6 +49,7 @@ const ChatContextProvider: React.FC<{children: React.ReactNode}> = ({ children }
         }
         setLoading(false);
         setInput("");
+        setPrevAnswers([...prevAnswers, newResponse2])
         setPrevPrompts([...prevPrompts, prompt]);
     }
 
@@ -60,7 +63,10 @@ const ChatContextProvider: React.FC<{children: React.ReactNode}> = ({ children }
         loading,
         resultData,
         input,
-        setInput
+        setInput,
+        setResultData,
+        prevAnswers,
+        setPrevAnswers
     }
 
     return (

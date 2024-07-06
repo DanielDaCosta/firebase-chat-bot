@@ -9,29 +9,17 @@ const Sidebar = () => {
     const [extended, setExtended] = useState(false)
 
     const {
-        prevPrompts
+        prevPrompts, setRecentPrompt,
+        setResultData, prevAnswers
     } = useContext(ChatContext) as ChatContextType
 
-    // useEffect(() => {
 
-    //     const container = document.getElementById('recent-entries')
-    //     if (container) {
-    //         container.innerHTML = ''; // Clear previous content
+    const loadPrompt = (index: number) => {
+        const originalIndex = prevPrompts.length - 1 - index;
+        setRecentPrompt(prevPrompts[originalIndex]);
+        setResultData(prevAnswers[originalIndex]);
 
-    //         prevPrompts.reverse().forEach((prompt: string, index) => {
-    //             const  div = document.createElement('div');
-    //             div.className = "recent-entry";
-    //             div.innerHTML = `
-    //                  <img src=${assets.message_icon} alt="" />
-    //                 <p>${prompt.substring(0,10)}</p>
-    //             `;
-    //             container.appendChild(div);
-    //         })
-    //     }
-
-    // }, [prevPrompts])
-
-
+    }
 
     return (  
         <div className="sidebar">
@@ -46,16 +34,16 @@ const Sidebar = () => {
                 <div className="recent">
                     <p className="recent-title">Recent</p>
                     {
-                        prevPrompts.map((item, index) => {
+                        prevPrompts.slice().reverse().map((item, index) => {
                             return(
-                                <div className="recent-entry">
+                                <div key={index} onClick={() => loadPrompt(index)}className="recent-entry">
                                     <img src={assets.message_icon} alt="" />
                                     <p>{item.slice(0,18)}...</p>
                                 </div>
                             )
                         })
                     }
-                </div>
+                </div> 
                 : null}
             </div>
             <div className="bottom">
