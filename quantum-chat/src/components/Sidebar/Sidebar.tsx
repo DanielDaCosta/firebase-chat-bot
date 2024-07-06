@@ -1,10 +1,37 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './Sidebar.css'
 import { assets } from '../../assets/assets'
+import { ChatContext } from "../../context/ChatContext";
+import { ChatContextType } from '../../types/context';
 
 const Sidebar = () => {
 
     const [extended, setExtended] = useState(false)
+
+    const {
+        prevPrompts
+    } = useContext(ChatContext) as ChatContextType
+
+    // useEffect(() => {
+
+    //     const container = document.getElementById('recent-entries')
+    //     if (container) {
+    //         container.innerHTML = ''; // Clear previous content
+
+    //         prevPrompts.reverse().forEach((prompt: string, index) => {
+    //             const  div = document.createElement('div');
+    //             div.className = "recent-entry";
+    //             div.innerHTML = `
+    //                  <img src=${assets.message_icon} alt="" />
+    //                 <p>${prompt.substring(0,10)}</p>
+    //             `;
+    //             container.appendChild(div);
+    //         })
+    //     }
+
+    // }, [prevPrompts])
+
+
 
     return (  
         <div className="sidebar">
@@ -18,10 +45,16 @@ const Sidebar = () => {
                 {extended? 
                 <div className="recent">
                     <p className="recent-title">Recent</p>
-                    <div className="recent-entry">
-                        <img src={assets.message_icon} alt="" />
-                        <p>What is the full f...</p>
-                    </div>
+                    {
+                        prevPrompts.map((item, index) => {
+                            return(
+                                <div className="recent-entry">
+                                    <img src={assets.message_icon} alt="" />
+                                    <p>{item.slice(0,18)}...</p>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
                 : null}
             </div>

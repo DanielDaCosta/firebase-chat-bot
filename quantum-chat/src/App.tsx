@@ -1,31 +1,19 @@
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-import BlogDetails from './components/BlogDetails';
-import Create from './components/Create';
 import Sidebar from './components/Sidebar/Sidebar';
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import React from 'react';
 import Main from './components/Main/Main';
+import ChatContextProvider from './context/ChatContext';
 
 function App() {
 
   // const title = 'Welcome to the new blog';
 
   return (
-    // <BrowserRouter>
     <div className="App">
-      {/* <Navbar /> */}
-      <Sidebar />
-      <Main />
-      {/* <div className="content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blogs/:id" element={<BlogDetails />} />
-          <Route path="/create" element={<Create />} />
-        </Routes>
-      </div> */}
+      <ChatContextProvider>
+        <Sidebar />
+        <Main />
+      </ChatContextProvider>
     </div>
-    // </BrowserRouter>
   );
 }
 
