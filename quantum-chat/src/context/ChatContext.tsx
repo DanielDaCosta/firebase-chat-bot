@@ -2,7 +2,6 @@ import { createContext, useState } from 'react';
 import React from 'react';
 import runChat from '../config/gemini';
 import { ChatContextType, Prompt, RecentPrompt, ResultData, ShowResult, Loading } from "../types/context";
-import useSave from '../utils/SaveToFirebase';
 
 export const ChatContext = createContext<ChatContextType|null>(null);
 
@@ -17,6 +16,7 @@ const ChatContextProvider: React.FC<{children: React.ReactNode}> = ({ children }
     const [showResult, setShowResult] = useState<ShowResult>(false);
     const [loading, setLoading] = useState<Loading>(false);
     const [resultData, setResultData] = useState<ResultData>("");
+    const [prevIds, setPrevIds] = useState<Prompt[]>([]);
     
 
     const delayPara = (index: number, nextWord: string) => {
@@ -60,7 +60,7 @@ const ChatContextProvider: React.FC<{children: React.ReactNode}> = ({ children }
         return newResponse2
     }
 
-    const contextValue = {
+    const contextValue: ChatContextType = {
         prevPrompts,
         setPrevPrompts,
         onSent,
@@ -74,7 +74,9 @@ const ChatContextProvider: React.FC<{children: React.ReactNode}> = ({ children }
         setResultData,
         prevAnswers,
         setPrevAnswers,
-        newChat
+        newChat,
+        prevIds,
+        setPrevIds
     }
 
     return (

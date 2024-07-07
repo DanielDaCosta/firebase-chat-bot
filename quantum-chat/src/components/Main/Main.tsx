@@ -9,19 +9,19 @@ const Main = () => {
     const {
         onSent, setInput, input,
         recentPrompt, showResult, loading,
-        resultData
+        resultData, prevIds, setPrevIds
     } = useContext(ChatContext) as ChatContextType;
 
     const processResult = (input: string) : void => {
 
         // Process and Save GenAI output to Firebase 
         onSent(input).then((output) => {
-            console.log(input)
-            console.log(output)
             SaveToFirebase({
                 firebaseCollection: 'quantum-chat',
                 prompt: input,
                 answer: output
+            }).then((output_id: string) => {
+                setPrevIds(prev => [...prev, output_id])
             })
         })
     }

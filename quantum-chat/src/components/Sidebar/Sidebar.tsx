@@ -3,6 +3,7 @@ import './Sidebar.css'
 import { assets } from '../../assets/assets'
 import { ChatContext } from "../../context/ChatContext";
 import { ChatContextType } from '../../types/context';
+import ReadFromFirebase from "../../utils/ReadFromFirebase";
 
 const Sidebar = () => {
 
@@ -10,14 +11,19 @@ const Sidebar = () => {
 
     const {
         prevPrompts, setRecentPrompt,
-        setResultData, prevAnswers, newChat
+        setResultData, prevAnswers, newChat,
+        prevIds
     } = useContext(ChatContext) as ChatContextType
-
 
     const loadPrompt = (index: number) => {
         const originalIndex = prevPrompts.length - 1 - index;
-        setRecentPrompt(prevPrompts[originalIndex]);
-        setResultData(prevAnswers[originalIndex]);
+        ReadFromFirebase({
+            firebaseCollection: 'quantum-chat',
+            id: prevIds[originalIndex]}
+        ).then(({prompt, answer}) => {
+            setRecentPrompt(prompt);
+            setResultData(answer);
+        });
     }
 
     return (  
