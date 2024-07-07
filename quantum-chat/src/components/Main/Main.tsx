@@ -5,6 +5,8 @@ import { ChatContext } from "../../context/ChatContext";
 import { ChatContextType } from '../../types/context';
 import SaveToFirebase from "../../utils/SaveToFirebase";
 
+const firebaseCollectionName: string = process.env.REACT_APP_FIREBASE_COLLECTION || 'quantum-chat'
+
 const Main = () => {
     const {
         onSent, setInput, input,
@@ -17,7 +19,7 @@ const Main = () => {
         // Process and Save GenAI output to Firebase 
         onSent(input).then((output) => {
             SaveToFirebase({
-                firebaseCollection: 'quantum-chat',
+                firebaseCollection: firebaseCollectionName,
                 prompt: input,
                 answer: output
             }).then((output_id: string) => {
