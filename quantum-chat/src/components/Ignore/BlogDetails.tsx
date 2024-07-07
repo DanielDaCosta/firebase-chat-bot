@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import useFetchSingleDoc from '../hooks/useFetchSingleDoc';
+import useFetchSingleDoc from '../../hooks/useFetchSingleDoc';
 import { getFirestore, deleteDoc, doc } from "firebase/firestore"; 
 import React from 'react';
 
