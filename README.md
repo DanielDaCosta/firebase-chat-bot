@@ -1,6 +1,6 @@
-# firebase-chat-bot
+# Firebase Chatbot
 
-firebase-chat-bot is a platform designed for instantaneous and continuous dialogue powered by Generative AI.
+Firebase chatbot is a platform powered by Generative AI that is designed for instantaneous and continuous dialogue.
 
 ## Tools
 
