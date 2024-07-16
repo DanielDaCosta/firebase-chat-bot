@@ -12,7 +12,7 @@ Firebase chatbot is a platform powered by Generative AI that is designed for ins
 To get started with firebase-chat-bot, follow these steps:
 
 1. Create a Google Generative AI API Key: Obtain your API key from Google's Generative AI service.
-2. Setup Firebase Collection: Create a Firebase collection to store chat dat
+2. Setup Firebase Collection: Create a Firebase collection to store chat data.
 
 Store these keys securely in your .env file located in the project root:
 
