@@ -1,6 +1,6 @@
 # Firebase Chatbot
 
-Firebase chatbot is a platform powered by Generative AI that is designed for instantaneous and continuous dialogue.
+Firebase chatbot is a platform powered by Gemini that is designed for instantaneous and continuous dialogue.
 
 ## Tools
 
