@@ -31,7 +31,7 @@ npm run start
 
 ## Architecture
 
-The architecture of firebase-chat-bot is designed using React and TypeScript frontend, communicating with Firebase backend for real-time data storage and retrieval.
+The architecture of Firebase-chat-bot is designed using a React and TypeScript front end, which communicates with the Firebase backend for real-time data storage and retrieval.
 
 ![Home Page](images/home_page.png)
 
